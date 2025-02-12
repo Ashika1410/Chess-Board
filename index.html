@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chess</title>
+        <h1>Chess Board</h1>
+        <link rel="stylesheet" href="E:\VS programs\Chess Board\assets\Style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+        <div class="chess-board">
+
+                <div class="row">
+                        <!-- First Row -->
+                        <div class="box black" onclick="getBox(0)"></div>
+                        <div class="box white" onclick="getBox(1)"></div>
+                        <div class="box black" onclick="getBox(2)"></div>
+                        <div class="box white" onclick="getBox(3)"></div>
+                        <div class="box black" onclick="getBox(4)"></div>
+                        <div class="box white" onclick="getBox(5)"></div>
+                        <div class="box black" onclick="getBox(6)"></div>
+                        <div class="box white" onclick="getBox(7)"></div>
+                </div>
+
+                <div class="row">
+                        <!-- Second Row -->
+                        <div class="box white" onclick="getBox(8)"></div>
+                        <div class="box black" onclick="getBox(9)"></div>
+                        <div class="box white" onclick="getBox(10)"></div>
+                        <div class="box black" onclick="getBox(11)"></div>
+                        <div class="box white" onclick="getBox(12)"></div>
+                        <div class="box black" onclick="getBox(13)"></div>
+                        <div class="box white" onclick="getBox(14)"></div>
+                        <div class="box black" onclick="getBox(15)"></div>
+                </div>
+
+                <div class="row">
+                        <!-- Third Row -->
+                        <div class="box black" onclick="getBox(16)"></div>
+                        <div class="box white" onclick="getBox(17)"></div>
+                        <div class="box black" onclick="getBox(18)"></div>
+                        <div class="box white" onclick="getBox(19)"></div>
+                        <div class="box black" onclick="getBox(20)"></div>
+                        <div class="box white" onclick="getBox(21)"></div>
+                        <div class="box black" onclick="getBox(22)"></div>
+                        <div class="box white" onclick="getBox(23)"></div>
+                </div>
+
+                <div class="row">
+                        <!-- Fourth Row -->
+                        <div class="box white" onclick="getBox(24)"></div>
+                        <div class="box black" onclick="getBox(25)"></div>
+                        <div class="box white" onclick="getBox(26)"></div>
+                        <div class="box black" onclick="getBox(27)"></div>
+                        <div class="box white" onclick="getBox(28)"></div>
+                        <div class="box black" onclick="getBox(29)"></div>
+                        <div class="box white" onclick="getBox(30)"></div>
+                        <div class="box black" onclick="getBox(31)"></div>
+                </div>
+
+                <div class="row">
+                        <!-- Fifth Row -->
+                        <div class="box black" onclick="getBox(32)"></div>
+                        <div class="box white" onclick="getBox(33)"></div>
+                        <div class="box black" onclick="getBox(34)"></div>
+                        <div class="box white" onclick="getBox(35)"></div>
+                        <div class="box black" onclick="getBox(36)"></div>
+                        <div class="box white" onclick="getBox(37)"></div>
+                        <div class="box black" onclick="getBox(38)"></div>
+                        <div class="box white" onclick="getBox(39)"></div>
+                </div>
+
+                <div class="row">
+                        <!-- Sixth Row -->
+                        <div class="box white" onclick="getBox(40)"></div>
+                        <div class="box black" onclick="getBox(41)"></div>
+                        <div class="box white" onclick="getBox(42)"></div>
+                        <div class="box black" onclick="getBox(43)"></div>
+                        <div class="box white" onclick="getBox(44)"></div>
+                        <div class="box black" onclick="getBox(45)"></div>
+                        <div class="box white" onclick="getBox(46)"></div>
+                        <div class="box black" onclick="getBox(47)"></div>
+                </div>
+
+                <div class="row">
+                        <!-- Seventh Row -->
+                        <div class="box black" onclick="getBox(48)"></div>
+                        <div class="box white" onclick="getBox(49)"></div>
+                        <div class="box black" onclick="getBox(50)"></div>
+                        <div class="box white" onclick="getBox(51)"></div>
+                        <div class="box black" onclick="getBox(52)"></div>
+                        <div class="box white" onclick="getBox(53)"></div>
+                        <div class="box black" onclick="getBox(54)"></div>
+                        <div class="box white" onclick="getBox(55)"></div>
+                </div>
+
+                <div class="row">
+                        <!-- Eight Row -->
+                        <div class="box white" onclick="getBox(56)"></div>
+                        <div class="box black" onclick="getBox(57)"></div>
+                        <div class="box white" onclick="getBox(58)"></div>
+                        <div class="box black" onclick="getBox(59)"></div>
+                        <div class="box white" onclick="getBox(60)"></div>
+                        <div class="box black" onclick="getBox(61)"></div>
+                        <div class="box white" onclick="getBox(62)"></div>
+                        <div class="box black" onclick="getBox(63)"></div>
+                </div>
+        </div>
+
+        <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                        let boardElement = document.querySelector(".chess-board");
+                        let selectedBoxIndex = null;
+                        let turn = "white";
+                        let selectedPiece = null;
+
+                        let pieces = {
+                                "r": "<span class='black-piece'>♜</span>", "n": "<span class='black-piece'>♞</span>",
+                                "b": "<span class='black-piece'>♝</span>", "q": "<span class='black-piece'>♛</span>",
+                                "k": "<span class='black-piece'>♚</span>", "p": "<span class='black-piece'>♟</span>",
+                                "R": "<span class='white-piece'>♖</span>", "N": "<span class='white-piece'>♘</span>",
+                                "B": "<span class='white-piece'>♗</span>", "Q": "<span class='white-piece'>♕</span>",
+                                "K": "<span class='white-piece'>♔</span>", "P": "<span class='white-piece'>♙</span>"
+                        };
+
+                        let initialBoard = [
+                                "r", "n", "b", "q", "k", "b", "n", "r",
+                                "p", "p", "p", "p", "p", "p", "p", "p",
+                                "", "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "",
+                                "P", "P", "P", "P", "P", "P", "P", "P",
+                                "R", "N", "B", "Q", "K", "B", "N", "R"
+                        ];
+
+                        function setupBoard() {
+                                boardElement.innerHTML = "";
+                                for (let i = 0; i < 64; i++) {
+                                        let box = document.createElement("div");
+                                        box.className = "box " + ((Math.floor(i / 8) + i) % 2 === 0 ? "white" : "black");
+                                        if (initialBoard[i]) {
+                                                box.innerHTML = pieces[initialBoard[i]];
+                                        }
+                                        box.setAttribute("data-index", i);
+                                        box.addEventListener("click", () => getBox(i));
+                                        boardElement.appendChild(box);
+                                }
+                        }
+
+                        function getBox(boxIndex) {
+                                let boxes = document.querySelectorAll(".box");
+                                let clickedBox = boxes[boxIndex];
+                                if (selectedPiece) {
+                                        if (isValidMove(selectedBoxIndex, boxIndex)) {
+                                                clickedBox.innerHTML = pieces[initialBoard[selectedBoxIndex]];
+                                                boxes[selectedBoxIndex].innerHTML = "";
+                                                initialBoard[boxIndex] = initialBoard[selectedBoxIndex];
+                                                initialBoard[selectedBoxIndex] = "";
+                                                turn = turn === "white" ? "black" : "white";
+                                        }
+                                        selectedPiece = null;
+                                        selectedBoxIndex = null;
+                                        removeSelection();
+                                        setupBoard(); 
+                                } else {
+                                        let pieceSymbol = initialBoard[boxIndex];
+
+                                        if (pieceSymbol && isCorrectTurn(pieceSymbol)) {
+                                                selectedPiece = pieceSymbol;
+                                                selectedBoxIndex = boxIndex;
+                                                clickedBox.classList.add("selected");
+                                        }
+                                }
+                        }
+
+                        function removeSelection() {
+                                let boxes = document.querySelectorAll(".box");
+                                boxes.forEach(box => box.classList.remove("selected"));
+                        }
+
+                        function isCorrectTurn(piece) {
+                                let isWhite = piece.toUpperCase() === piece; 
+                                return (turn === "white" && isWhite) || (turn === "black" && !isWhite);
+                        }
+
+                        function isValidMove(fromIndex, toIndex) {
+                                let fromRow = Math.floor(fromIndex / 8), fromCol = fromIndex % 8;
+                                let toRow = Math.floor(toIndex / 8), toCol = toIndex % 8;
+                                let rowDiff = Math.abs(toRow - fromRow);
+                                let colDiff = Math.abs(toCol - fromCol);
+                                let piece = selectedPiece;
+                                if (!piece) return false;
+                                let targetPiece = initialBoard[toIndex];
+                                let isCapture = targetPiece && isCorrectTurn(targetPiece) !== isCorrectTurn(piece);
+                                if (piece === "P" || piece === "p") { // Pawn logic
+                                        let direction = (piece === "P") ? -1 : 1; // White moves up (-1), Black moves down (+1)
+                                        if (toRow === fromRow + direction && colDiff === 0 && !targetPiece) return true; // Normal move
+                                        if (fromRow === (piece === "P" ? 6 : 1) && toRow === fromRow + 2 * direction && colDiff === 0 && !targetPiece) return true; // Double move
+                                        if (toRow === fromRow + direction && colDiff === 1 && isCapture) return true; // Capture move
+                                } else if (piece === "R" || piece === "r") { // Rook
+                                        if (fromRow === toRow || fromCol === toCol) return isPathClear(fromIndex, toIndex);
+                                } else if (piece === "B" || piece === "b") { // Bishop
+                                        if (rowDiff === colDiff) return isPathClear(fromIndex, toIndex);
+                                } else if (piece === "Q" || piece === "q") { // Queen
+                                        if (rowDiff === colDiff || fromRow === toRow || fromCol === toCol) return isPathClear(fromIndex, toIndex);
+                                } else if (piece === "K" || piece === "k") { // King
+                                        if (rowDiff <= 1 && colDiff <= 1) return true;
+                                } else if (piece === "N" || piece === "n") { // Knight
+                                        if ((rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2)) return true;
+                                }
+                                return false;
+                        }
+                        function isPathClear(fromIndex, toIndex) {
+                                let fromRow = Math.floor(fromIndex / 8), fromCol = fromIndex % 8;
+                                let toRow = Math.floor(toIndex / 8), toCol = toIndex % 8;
+                                let rowStep = Math.sign(toRow - fromRow);
+                                let colStep = Math.sign(toCol - fromCol);
+                                let currRow = fromRow + rowStep;
+                                let currCol = fromCol + colStep;
+                                while (currRow !== toRow || currCol !== toCol) {
+                                        let index = currRow * 8 + currCol;
+                                        if (initialBoard[index]) return false;
+                                        currRow += rowStep;
+                                        currCol += colStep;
+                                }
+                                return true;
+                        }
+                        setupBoard();
+                });
+
+        </script>
+
+</body>
+
+</html>
